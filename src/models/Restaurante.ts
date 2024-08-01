@@ -4,6 +4,7 @@ class Restaurante {
   imagem: string
   nota: string
   infos: string[]
+  link: string
   id: number
 
   constructor(
@@ -12,6 +13,7 @@ class Restaurante {
     imagem: string,
     nota: string,
     infos: string[],
+    link: string,
     id: number
   ) {
     ;(this.nome = nome),
@@ -19,7 +21,8 @@ class Restaurante {
       (this.imagem = imagem),
       (this.nota = nota),
       (this.infos = infos),
-      (this.id = id)
+      (this.id = id),
+      (this.link = link)
   }
 }
 

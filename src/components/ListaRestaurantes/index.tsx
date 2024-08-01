@@ -18,6 +18,7 @@ const ListaRestaurantes = ({ restaurantes }: Props) => (
             imagem={restaurante.imagem}
             infos={restaurante.infos}
             nota={restaurante.nota}
+            link={restaurante.link}
           />
         ))}
       </Lista>

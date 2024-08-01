@@ -1,6 +1,6 @@
 import { HeaderBar } from './styles'
-import logo from '../../assets/images/logo.svg'
-import fundoHeader from '../../assets/images/Vector.svg'
+import logo from '../../../assets/images/logo.svg'
+import fundoHeader from '../../../assets/images/Vector.svg'
 
 const Header = () => (
   <HeaderBar style={{ backgroundImage: `url(${fundoHeader})` }}>

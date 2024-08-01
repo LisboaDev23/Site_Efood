@@ -1,5 +1,12 @@
+import { Link } from 'react-router-dom'
 import Tag from '../Tag'
-import { BotaoSaibaMais, Card, Categoria, NomeNotaContainer } from './styles'
+import {
+  BotaoSaibaMais,
+  Card,
+  Categoria,
+  Descricao,
+  NomeNotaContainer
+} from './styles'
 
 //necessito agora de uma representação do Objeto restaurante para preenchermos as informações
 //com as definições de instâncias
@@ -11,9 +18,10 @@ type Props = {
   imagem: string
   nota: string
   infos: string[]
+  link: string
 }
 
-const Restaurante = ({ nome, descricao, imagem, nota, infos }: Props) => (
+const Restaurante = ({ nome, descricao, imagem, nota, infos, link }: Props) => (
   <Card>
     <img src={imagem} alt={descricao} />
     <Categoria>
@@ -26,8 +34,10 @@ const Restaurante = ({ nome, descricao, imagem, nota, infos }: Props) => (
         <h4>{nome}</h4>
         <img src={nota} alt={nota} />
       </NomeNotaContainer>
-      <p>{descricao}</p>
-      <BotaoSaibaMais href="#">Saiba mais</BotaoSaibaMais>
+      <Descricao>{descricao}</Descricao>
+      <Link style={{ textDecoration: 'none' }} to={link}>
+        <BotaoSaibaMais>Saiba mais</BotaoSaibaMais>
+      </Link>
     </div>
   </Card>
 )
