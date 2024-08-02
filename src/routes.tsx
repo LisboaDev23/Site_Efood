@@ -6,6 +6,8 @@ import fundoRestaurantae from './assets/images/fundo-macarrão.png'
 import notaBaixa from './assets/images/notaBaixa.svg'
 import sushi from './assets/images/sushi.png'
 import notaAlta from './assets/images/nota.svg'
+import marguerita from './assets/images/pizza-item-cardapio.jpg'
+import OpcaoCardapio from './models/OpcaoCardapio'
 
 const restauranteJapones: Restaurante = {
   id: 1,
@@ -29,6 +31,84 @@ const restauranteItaliano: Restaurante = {
   link: '/laDolceVitaTrattoria'
 }
 
+const itensCardapioSushi: OpcaoCardapio[] = [
+  {
+    nomePrato: 'Sashimi Salmão',
+    descricaoPrato:
+      'Deliciosos cortes de sashimis de salmão fresco com um bom toque de molho tarê ou shoyu',
+    imagem: sushi
+  },
+  {
+    nomePrato: 'Sashimi Salmão',
+    descricaoPrato:
+      'Deliciosos cortes de sashimis de salmão fresco com um bom toque de molho tarê ou shoyu',
+    imagem: sushi
+  },
+  {
+    nomePrato: 'Sashimi Salmão',
+    descricaoPrato:
+      'Deliciosos cortes de sashimis de salmão fresco com um bom toque de molho tarê ou shoyu',
+    imagem: sushi
+  },
+  {
+    nomePrato: 'Sashimi Salmão',
+    descricaoPrato:
+      'Deliciosos cortes de sashimis de salmão fresco com um bom toque de molho tarê ou shoyu',
+    imagem: sushi
+  },
+  {
+    nomePrato: 'Sashimi Salmão',
+    descricaoPrato:
+      'Deliciosos cortes de sashimis de salmão fresco com um bom toque de molho tarê ou shoyu',
+    imagem: sushi
+  },
+  {
+    nomePrato: 'Sashimi Salmão',
+    descricaoPrato:
+      'Deliciosos cortes de sashimis de salmão fresco com um bom toque de molho tarê ou shoyu',
+    imagem: sushi
+  }
+]
+
+const itensCardapioItaliano: OpcaoCardapio[] = [
+  {
+    nomePrato: 'Pizza Marguerita',
+    descricaoPrato:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    imagem: marguerita
+  },
+  {
+    nomePrato: 'Pizza Marguerita',
+    descricaoPrato:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    imagem: marguerita
+  },
+  {
+    nomePrato: 'Pizza Marguerita',
+    descricaoPrato:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    imagem: marguerita
+  },
+  {
+    nomePrato: 'Pizza Marguerita',
+    descricaoPrato:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    imagem: marguerita
+  },
+  {
+    nomePrato: 'Pizza Marguerita',
+    descricaoPrato:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    imagem: marguerita
+  },
+  {
+    nomePrato: 'Pizza Marguerita',
+    descricaoPrato:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    imagem: marguerita
+  }
+]
+
 const Rotas = () => (
   <Routes>
     <Route path="/" element={<Home />} />
@@ -36,6 +116,7 @@ const Rotas = () => (
       path="/hiokiSushi"
       element={
         <RestaurantePage
+          itensCardapio={itensCardapioSushi}
           nomeRestaurante={restauranteJapones.nome}
           imagemRestaurante={restauranteJapones.imagem}
           categoria={restauranteJapones.infos[1]}
@@ -46,6 +127,7 @@ const Rotas = () => (
       path="/laDolceVitaTrattoria"
       element={
         <RestaurantePage
+          itensCardapio={itensCardapioItaliano}
           nomeRestaurante={restauranteItaliano.nome}
           imagemRestaurante={restauranteItaliano.imagem}
           categoria={restauranteItaliano.infos[0]}

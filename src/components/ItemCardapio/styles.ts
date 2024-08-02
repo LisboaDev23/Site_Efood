@@ -9,6 +9,7 @@ export const Item = styled.li`
 
   img {
     padding: 8px;
+    width: 100%;
   }
   h4 {
     color: ${cores.rosaClaro};

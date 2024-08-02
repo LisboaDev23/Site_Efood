@@ -1,17 +1,20 @@
 import BannerRestaurant from '../../components/BannerRestaurant'
 import Cardapio from '../../components/Cardapio'
 import HeaderPageRestaurant from '../../components/Header/HeaderPageRestaurant'
+import OpcaoCardapio from '../../models/OpcaoCardapio'
 
 type Props = {
   categoria: string
   nomeRestaurante: string
   imagemRestaurante: string
+  itensCardapio: OpcaoCardapio[]
 }
 
 const RestaurantePage = ({
   categoria,
   nomeRestaurante,
-  imagemRestaurante
+  imagemRestaurante,
+  itensCardapio
 }: Props) => (
   <>
     <HeaderPageRestaurant />
@@ -20,7 +23,7 @@ const RestaurantePage = ({
       nomeRestaurante={nomeRestaurante}
       imagemRestaurante={imagemRestaurante}
     />
-    <Cardapio />
+    <Cardapio itensCardapio={itensCardapio} />
   </>
 )
 
