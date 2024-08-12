@@ -1,8 +1,10 @@
 import { Item } from './styles'
 
 type Props = {
-  imagemItem: string
   nomeItem: string
+  precoItem: number
+  porcaoItem: string
+  imagemItem: string
   descricaoItem: string
 }
 
@@ -14,7 +16,7 @@ const ItemCardapio = ({ nomeItem, imagemItem, descricaoItem }: Props) => (
     <h4>{nomeItem}</h4>
     <p>{descricaoItem}</p>
     <div style={{ textAlign: 'center' }}>
-      <button>Adicionar ao carrinho</button>
+      <button>Mais detalhes</button>
     </div>
   </Item>
 )

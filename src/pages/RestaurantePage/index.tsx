@@ -1,13 +1,14 @@
+import { useEffect, useState } from 'react'
 import BannerRestaurant from '../../components/BannerRestaurant'
 import Cardapio from '../../components/Cardapio'
 import HeaderPageRestaurant from '../../components/Header/HeaderPageRestaurant'
-import OpcaoCardapio from '../../models/OpcaoCardapio'
+import { ItemCardapioRestaurante, RestauranteType } from '../Home'
 
 type Props = {
   categoria: string
   nomeRestaurante: string
   imagemRestaurante: string
-  itensCardapio: OpcaoCardapio[]
+  itensCardapio: ItemCardapioRestaurante[]
 }
 
 const RestaurantePage = ({
@@ -15,16 +16,22 @@ const RestaurantePage = ({
   nomeRestaurante,
   imagemRestaurante,
   itensCardapio
-}: Props) => (
-  <>
-    <HeaderPageRestaurant />
-    <BannerRestaurant
-      categoria={categoria}
-      nomeRestaurante={nomeRestaurante}
-      imagemRestaurante={imagemRestaurante}
-    />
-    <Cardapio itensCardapio={itensCardapio} />
-  </>
-)
+}: Props) => {
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
+  }, [])
+
+  return (
+    <>
+      <HeaderPageRestaurant />
+      <BannerRestaurant
+        categoria={categoria}
+        nomeRestaurante={nomeRestaurante}
+        imagemRestaurante={imagemRestaurante}
+      />
+      <Cardapio itensCardapio={itensCardapio} />
+    </>
+  )
+}
 
 export default RestaurantePage

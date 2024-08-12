@@ -14,6 +14,11 @@ export const Card = styled.div`
       margin-bottom: 16px;
     }
   }
+  > img {
+    max-width: 472px;
+    width: 100%;
+    height: 217px;
+  }
 `
 export const NomeNotaContainer = styled.div`
   display: flex;

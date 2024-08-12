@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import estrela from '../../assets/images/estrela.png'
 import Tag from '../Tag'
 import {
   BotaoSaibaMais,
@@ -16,23 +17,40 @@ type Props = {
   nome: string
   descricao: string
   imagem: string
-  nota: string
-  infos: string[]
+  nota: number
+  destacado: boolean
+  tipo: string
   link: string
 }
 
-const Restaurante = ({ nome, descricao, imagem, nota, infos, link }: Props) => (
+const Restaurante = ({
+  nome,
+  descricao,
+  imagem,
+  nota,
+  destacado,
+  tipo,
+  link
+}: Props) => (
   <Card>
     <img src={imagem} alt={descricao} />
     <Categoria>
-      {infos.map((info) => (
-        <Tag key={info}>{info}</Tag>
-      ))}
+      {destacado ? (
+        <>
+          <Tag>Destaque da semana</Tag>
+          <Tag>{tipo}</Tag>
+        </>
+      ) : (
+        <Tag>{tipo}</Tag>
+      )}
     </Categoria>
     <div className="containerInfos">
       <NomeNotaContainer>
         <h4>{nome}</h4>
-        <img src={nota} alt={nota} />
+        <div style={{ display: 'flex' }}>
+          <h4>{nota}</h4>
+          <img src={estrela} alt={'avaliação'} style={{ marginLeft: '8px' }} />
+        </div>
       </NomeNotaContainer>
       <Descricao>{descricao}</Descricao>
       <Link style={{ textDecoration: 'none' }} to={link}>
