@@ -33,7 +33,7 @@ const RestaurantePage = () => {
         nomeRestaurante={restaurante.titulo}
         imagemRestaurante={restaurante.capa}
       />
-      <Cardapio itensCardapio={restaurante.cardapio} />
+      <Cardapio />
     </>
   )
 }

@@ -15,10 +15,10 @@ export const Modal = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
   display: none;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 
   &.visivel {
     display: flex;
@@ -30,25 +30,29 @@ export const Modal = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.73);
-  }
-`
-
-export const Container = styled.div`
-  background-color: ${cores.rosaForte};
-  color: ${cores.branco};
-  header {
-    display: flex;
-    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.8);
   }
 `
 
 export const ConteudoModal = styled.div`
+  background-color: ${cores.rosaForte};
+  color: ${cores.branco};
   padding: 32px;
   padding-top: 0px;
-  display: flex;
-  z-index: 1;
+  padding-right: 0px;
+  display: block;
   position: relative;
+  z-index: 1;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      padding-top: 8px;
+      padding-right: 8px;
+    }
+  }
 
   h3 {
     font-weight: 900;
@@ -61,7 +65,7 @@ export const ConteudoModal = styled.div`
     height: 280px;
   }
   button {
-    max-width: 218px;
+    max-width: 228px;
     margin-top: 16px;
     padding: 4px 6.95px 4px 7.05px;
     background-color: ${cores.rosaClaro};
@@ -76,4 +80,13 @@ export const ConteudoModal = styled.div`
     font-weight: 400;
     line-height: 22px;
   }
+`
+
+export const ContainerInfosItem = styled.div`
+  > img {
+    height: 280px;
+    max-width: 280px;
+    width: 100%;
+  }
+  display: flex;
 `

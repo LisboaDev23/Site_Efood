@@ -9,7 +9,7 @@ type Props = {
 }
 
 const ItemCardapio = ({ nomeItem, imagemItem, descricaoItem }: Props) => (
-  <Item>
+  <Item style={{ cursor: 'pointer' }}>
     <div style={{ textAlign: 'center' }}>
       <img src={imagemItem} alt={nomeItem} />
     </div>

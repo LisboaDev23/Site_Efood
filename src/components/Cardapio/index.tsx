@@ -1,4 +1,9 @@
-import { ContainerCardapio, Container, Modal, ConteudoModal } from './styles'
+import {
+  ContainerCardapio,
+  Modal,
+  ConteudoModal,
+  ContainerInfosItem
+} from './styles'
 
 import ItemCardapio from '../ItemCardapio'
 import close from '../../assets/images/close 1.png'
@@ -10,10 +15,11 @@ type Props = {
   itensCardapio: ItemCardapioRestaurante[]
 }
 
-const Cardapio = ({ itensCardapio }: Props) => {
+const Cardapio = () => {
   const { id } = useParams()
   const [visivel, setVisivel] = useState(false)
   const [restaurante, setRestaurante] = useState<RestauranteType>()
+  const [item, setItem] = useState<ItemCardapioRestaurante>()
 
   useEffect(() => {
     fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
@@ -30,6 +36,7 @@ const Cardapio = ({ itensCardapio }: Props) => {
               key={item.id}
               onClick={() => {
                 setVisivel(true)
+                setItem(item)
               }}
             >
               <ItemCardapio
@@ -45,35 +52,38 @@ const Cardapio = ({ itensCardapio }: Props) => {
       </section>
 
       <Modal className={visivel ? 'visivel' : ''}>
-        <Container className="container">
-          <header>
-            <div></div>
-            <img
-              onClick={() => {
-                setVisivel(false)
-              }}
-              src={close}
-              alt="Fechar"
-              style={{ padding: '8px', paddingBottom: '0px' }}
-            />
-          </header>
-          {itensCardapio.map((item) => (
-            <ConteudoModal key={item.id}>
-              <img src={item.foto} alt={item.nome} />
-              <div style={{ maxWidth: '656px' }}>
-                <h3>{item.nome}</h3>
-                <p>
-                  {item.descricao}
-                  <br />
-                  <br />
-                  {item.porcao}
-                </p>
-                <button>Adicionar ao carrinho - R$ {item.preco}0</button>
-              </div>
-            </ConteudoModal>
-          ))}
-          <div className="overlay" onClick={() => setVisivel(false)}></div>
-        </Container>
+        <ConteudoModal className="container">
+          <div>
+            <header>
+              <div></div>
+              <img
+                onClick={() => {
+                  setVisivel(false)
+                }}
+                src={close}
+                alt="Fechar"
+                style={{
+                  cursor: 'pointer'
+                }}
+              />
+            </header>
+          </div>
+
+          <ContainerInfosItem>
+            <img src={item?.foto} alt={item?.nome} />
+            <div style={{ maxWidth: '656px', marginLeft: '24px' }}>
+              <h3>{item?.nome}</h3>
+              <p>
+                {item?.descricao}
+                <br />
+                <br />
+                {item?.porcao}
+              </p>
+              <button>Adicionar ao carrinho - R$ {item?.preco}0</button>
+            </div>
+          </ContainerInfosItem>
+        </ConteudoModal>
+        <div className="overlay" onClick={() => setVisivel(false)}></div>
       </Modal>
     </>
   )
