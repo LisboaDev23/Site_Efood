@@ -16,11 +16,11 @@ export const Modal = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1;
+  display: none;
   align-items: center;
   justify-content: center;
-  display: none;
 
-  .visivel {
+  &.visivel {
     display: flex;
   }
 
@@ -48,6 +48,7 @@ export const ConteudoModal = styled.div`
   padding-top: 0px;
   display: flex;
   z-index: 1;
+  position: relative;
 
   h3 {
     font-weight: 900;

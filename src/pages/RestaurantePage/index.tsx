@@ -3,33 +3,37 @@ import BannerRestaurant from '../../components/BannerRestaurant'
 import Cardapio from '../../components/Cardapio'
 import HeaderPageRestaurant from '../../components/Header/HeaderPageRestaurant'
 import { ItemCardapioRestaurante, RestauranteType } from '../Home'
+import { useParams } from 'react-router-dom'
 
 type Props = {
   categoria: string
   nomeRestaurante: string
   imagemRestaurante: string
-  itensCardapio: ItemCardapioRestaurante[]
+  restauranteProp: RestauranteType
 }
 
-const RestaurantePage = ({
-  categoria,
-  nomeRestaurante,
-  imagemRestaurante,
-  itensCardapio
-}: Props) => {
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-  }, [])
+const RestaurantePage = () => {
+  const { id } = useParams()
+  const [restaurante, setRestaurante] = useState<RestauranteType>()
 
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((resposta) => resposta.json())
+      .then((resposta) => setRestaurante(resposta))
+  }, [id])
+
+  if (!restaurante) {
+    return <h4>Carregando ...</h4>
+  }
   return (
     <>
       <HeaderPageRestaurant />
       <BannerRestaurant
-        categoria={categoria}
-        nomeRestaurante={nomeRestaurante}
-        imagemRestaurante={imagemRestaurante}
+        categoria={restaurante.tipo}
+        nomeRestaurante={restaurante.titulo}
+        imagemRestaurante={restaurante.capa}
       />
-      <Cardapio itensCardapio={itensCardapio} />
+      <Cardapio itensCardapio={restaurante.cardapio} />
     </>
   )
 }

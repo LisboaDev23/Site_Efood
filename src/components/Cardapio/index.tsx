@@ -1,33 +1,45 @@
 import { ContainerCardapio, Container, Modal, ConteudoModal } from './styles'
-import { useParams } from 'react-router-dom'
 
 import ItemCardapio from '../ItemCardapio'
 import close from '../../assets/images/close 1.png'
-import pizza from '../../assets/images/image 3.png'
-import { useState } from 'react'
-import { ItemCardapioRestaurante } from '../../pages/Home'
+import { useEffect, useState } from 'react'
+import { ItemCardapioRestaurante, RestauranteType } from '../../pages/Home'
+import { useParams } from 'react-router-dom'
 
 type Props = {
   itensCardapio: ItemCardapioRestaurante[]
 }
 
 const Cardapio = ({ itensCardapio }: Props) => {
-  const [visivel, setVisivel] = useState(false)
   const { id } = useParams()
+  const [visivel, setVisivel] = useState(false)
+  const [restaurante, setRestaurante] = useState<RestauranteType>()
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((resposta) => resposta.json())
+      .then((resposta) => setRestaurante(resposta))
+  }, [id])
 
   return (
     <>
       <section className="container">
         <ContainerCardapio>
-          {itensCardapio.map((item) => (
-            <ItemCardapio
-              nomeItem={item.nome}
-              imagemItem={item.foto}
-              descricaoItem={item.descricao}
-              porcaoItem={item.porcao}
-              precoItem={item.preco}
+          {restaurante?.cardapio.map((item) => (
+            <div
               key={item.id}
-            />
+              onClick={() => {
+                setVisivel(true)
+              }}
+            >
+              <ItemCardapio
+                nomeItem={item.nome}
+                imagemItem={item.foto}
+                descricaoItem={item.descricao}
+                porcaoItem={item.porcao}
+                precoItem={item.preco}
+              />
+            </div>
           ))}
         </ContainerCardapio>
       </section>
@@ -45,29 +57,22 @@ const Cardapio = ({ itensCardapio }: Props) => {
               style={{ padding: '8px', paddingBottom: '0px' }}
             />
           </header>
-          <ConteudoModal>
-            <img src={pizza} alt="" />
-            <div style={{ maxWidth: '656px' }}>
-              <h3>Pizza</h3>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni
-                unde fugiat voluptatum voluptas atque nihil ea illum quo
-                dignissimos! Ea tempora dolores iusto minus temporibus cum quasi
-                magnam quod quibusdam? Lorem ipsum dolor sit amet consectetur,
-                adipisicing elit. Deserunt numquam quam enim cumque veniam
-                sapiente velit placeat rerum deleniti, assumenda magni minima
-                magnam inventore adipisci nam corrupti a cum iste. Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Deleniti harum
-                omnis dolor optio. Animi nulla illo maxime minus fugit omnis sed
-                dolore ipsam nemo ratione, rerum molestias ipsum atque facere?
-                <br />
-                <br />
-                de fere
-              </p>
-              <button>Adicionar ao carrinho - R$ 60,90</button>
-            </div>
-          </ConteudoModal>
-          <div className="overlay"></div>
+          {itensCardapio.map((item) => (
+            <ConteudoModal key={item.id}>
+              <img src={item.foto} alt={item.nome} />
+              <div style={{ maxWidth: '656px' }}>
+                <h3>{item.nome}</h3>
+                <p>
+                  {item.descricao}
+                  <br />
+                  <br />
+                  {item.porcao}
+                </p>
+                <button>Adicionar ao carrinho - R$ {item.preco}0</button>
+              </div>
+            </ConteudoModal>
+          ))}
+          <div className="overlay" onClick={() => setVisivel(false)}></div>
         </Container>
       </Modal>
     </>
