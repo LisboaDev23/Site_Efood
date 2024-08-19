@@ -7,9 +7,10 @@ import {
 
 import ItemCardapio from '../ItemCardapio'
 import close from '../../assets/images/close 1.png'
-import { useEffect, useState } from 'react'
-import { ItemCardapioRestaurante, RestauranteType } from '../../pages/Home'
+import { useState } from 'react'
+import { ItemCardapioRestaurante } from '../../pages/Home'
 import { useParams } from 'react-router-dom'
+import { useGetRestaurantByIdQuery } from '../../services/api'
 
 type Props = {
   itensCardapio: ItemCardapioRestaurante[]
@@ -18,14 +19,9 @@ type Props = {
 const Cardapio = () => {
   const { id } = useParams()
   const [visivel, setVisivel] = useState(false)
-  const [restaurante, setRestaurante] = useState<RestauranteType>()
   const [item, setItem] = useState<ItemCardapioRestaurante>()
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((resposta) => resposta.json())
-      .then((resposta) => setRestaurante(resposta))
-  }, [id])
+  const { data: restaurante } = useGetRestaurantByIdQuery(id!)
 
   return (
     <>
