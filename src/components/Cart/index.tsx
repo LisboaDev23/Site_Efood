@@ -1,67 +1,63 @@
 import excluir from '../../assets/images/lixeira-de-reciclagem 1.png'
-import pizza from '../../assets/images/pizza-item-cardapio.jpg'
+import { RootReducer } from '../../store'
+import { close } from '../../store/reducers/cart'
 import { cores } from '../../styles'
 import { CartContainer, Overlay, Pedido, Sidebar } from './styles'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Cart = () => {
+  const { items, isOpen } = useSelector((state: RootReducer) => state.cart)
+  const dispatch = useDispatch()
+
+  const closeCart = () => {
+    dispatch(close())
+  }
+
+  const calculaTotalCarrinho = () => {
+    let acumulador = 0
+    items.forEach((item) => {
+      acumulador += item.preco
+    })
+    return acumulador
+  }
+
   return (
-    <CartContainer>
-      <Overlay />
+    <CartContainer className={isOpen ? 'is-open' : ''}>
+      <Overlay onClick={closeCart} />
       <Sidebar>
         <ul>
-          <Pedido>
-            <div style={{ display: 'flex' }}>
-              <img
-                style={{
-                  maxWidth: '80px',
-                  width: '100%',
-                  height: '80px'
-                }}
-                src={pizza}
-                alt=""
-              />
-              <div style={{ marginLeft: '8px' }}>
-                <h3 style={{ marginBottom: '16px' }}>Pizza Marguerita</h3>
-                <p>R$ 60,90</p>
+          {items.map((item) => (
+            <Pedido key={item.nome}>
+              <div style={{ display: 'flex' }}>
+                <img
+                  style={{
+                    maxWidth: '80px',
+                    width: '100%',
+                    height: '80px'
+                  }}
+                  src={item.foto}
+                  alt={item.descricao}
+                />
+                <div style={{ marginLeft: '8px' }}>
+                  <h3 style={{ marginBottom: '16px' }}>{}</h3>
+                  <p>R$ {item.preco}</p>
+                </div>
               </div>
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'flex-end'
-              }}
-            >
-              <img src={excluir} alt="" />
-            </div>
-          </Pedido>
-
-          <Pedido>
-            <div style={{ display: 'flex' }}>
-              <img
+              <div
                 style={{
-                  maxWidth: '80px',
+                  display: 'flex',
                   width: '100%',
-                  height: '80px'
+                  justifyContent: 'flex-end'
                 }}
-                src={pizza}
-                alt=""
-              />
-              <div style={{ marginLeft: '8px' }}>
-                <h3 style={{ marginBottom: '16px' }}>Pizza Marguerita</h3>
-                <p>R$ 60,90</p>
+              >
+                <img
+                  src={excluir}
+                  alt="Remover pedido"
+                  style={{ cursor: 'pointer' }}
+                />
               </div>
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'flex-end'
-              }}
-            >
-              <img src={excluir} alt="" />
-            </div>
-          </Pedido>
+            </Pedido>
+          ))}
         </ul>
 
         <div style={{ display: 'block' }}>
@@ -74,7 +70,7 @@ const Cart = () => {
             }}
           >
             <p>Valor total</p>
-            <p>R$ 182,70</p>
+            <p>R$ {calculaTotalCarrinho()}</p>
           </div>
           <div>
             <button>Continuar com a entrega</button>

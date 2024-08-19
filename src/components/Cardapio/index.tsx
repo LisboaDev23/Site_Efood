@@ -11,12 +11,17 @@ import { useState } from 'react'
 import { ItemCardapioRestaurante } from '../../pages/Home'
 import { useParams } from 'react-router-dom'
 import { useGetRestaurantByIdQuery } from '../../services/api'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
+import { open } from '../../store/reducers/cart'
 
 type Props = {
   itensCardapio: ItemCardapioRestaurante[]
 }
 
 const Cardapio = () => {
+  const dispatch = useDispatch()
+  const { items, isOpen } = useSelector((state: RootReducer) => state.cart)
   const { id } = useParams()
   const [visivel, setVisivel] = useState(false)
   const [item, setItem] = useState<ItemCardapioRestaurante>()
@@ -75,7 +80,14 @@ const Cardapio = () => {
                 <br />
                 {item?.porcao}
               </p>
-              <button>Adicionar ao carrinho - R$ {item?.preco}0</button>
+              <button
+                onClick={() => {
+                  dispatch(open())
+                  setVisivel(false)
+                }}
+              >
+                Adicionar ao carrinho - R$ {item?.preco}0
+              </button>
             </div>
           </ContainerInfosItem>
         </ConteudoModal>
