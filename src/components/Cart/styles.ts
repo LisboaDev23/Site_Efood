@@ -34,7 +34,7 @@ export const Sidebar = styled.aside`
   z-index: 1;
 
   button {
-    background-color: ${cores.branco};
+    background-color: ${cores.rosaClaro};
     width: 100%;
     border: none;
     color: ${cores.rosaForte};
@@ -47,7 +47,7 @@ export const Sidebar = styled.aside`
 `
 
 export const Pedido = styled.li`
-  background-color: ${cores.branco};
+  background-color: ${cores.rosaClaro};
   padding: 8px 12px 4px 8px;
   margin-bottom: 16px;
 `

@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom'
 import { useGetRestaurantByIdQuery } from '../../services/api'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
-import { open } from '../../store/reducers/cart'
+import { add, open } from '../../store/reducers/cart'
 
 type Props = {
   itensCardapio: ItemCardapioRestaurante[]
@@ -83,6 +83,7 @@ const Cardapio = () => {
               <button
                 onClick={() => {
                   dispatch(open())
+                  dispatch(add(item!))
                   setVisivel(false)
                 }}
               >

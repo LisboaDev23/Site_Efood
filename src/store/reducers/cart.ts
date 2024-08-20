@@ -25,7 +25,7 @@ const cartSlice = createSlice({
       }
     },
     remove: (state, action: PayloadAction<number>) => {
-      state.items.filter((item) => item.id !== action.payload)
+      state.items = state.items.filter((item) => item.id !== action.payload)
     },
     open: (state) => {
       state.isOpen = true
