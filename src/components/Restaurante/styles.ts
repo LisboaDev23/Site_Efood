@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { cores, dimensoes } from '../../styles'
 
 export const Card = styled.div`
   border: 1px solid ${cores.rosaForte};
@@ -23,9 +23,11 @@ export const Card = styled.div`
 export const NomeNotaContainer = styled.div`
   display: flex;
   justify-content: space-between;
-
   h4 {
     font-size: 18px;
+  }
+  img {
+    margin-left: 8px;
   }
 `
 

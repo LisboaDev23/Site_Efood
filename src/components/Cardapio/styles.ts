@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { cores, dimensoes } from '../../styles'
 
 export const ContainerCardapio = styled.ul`
   display: grid;
@@ -7,6 +7,10 @@ export const ContainerCardapio = styled.ul`
   column-gap: 32px;
   margin-top: 56px;
   margin-bottom: 88px;
+
+  @media (max-width: ${dimensoes.mobile}) {
+    display: block;
+  }
 `
 
 export const Modal = styled.div`
@@ -22,6 +26,12 @@ export const Modal = styled.div`
 
   &.visivel {
     display: flex;
+  }
+
+  @media (max-width: ${dimensoes.mobile}) {
+    &.visivel {
+      display: block;
+    }
   }
 
   .overlay {
@@ -44,6 +54,13 @@ export const ConteudoModal = styled.div`
   position: relative;
   z-index: 1;
 
+  @media (max-width: ${dimensoes.mobile}) {
+    padding: 0;
+    max-width: 310px;
+    text-align: center;
+    margin-top: 45px;
+  }
+
   header {
     display: flex;
     justify-content: space-between;
@@ -65,7 +82,7 @@ export const ConteudoModal = styled.div`
     height: 280px;
   }
   button {
-    max-width: 228px;
+    max-width: 238px;
     margin-top: 16px;
     padding: 4px 6.95px 4px 7.05px;
     background-color: ${cores.rosaClaro};
@@ -88,5 +105,25 @@ export const ContainerInfosItem = styled.div`
     max-width: 280px;
     width: 100%;
   }
+
+  > div {
+    margin-left: 24px;
+    max-width: 656px;
+  }
   display: flex;
+
+  @media (max-width: ${dimensoes.mobile}) {
+    display: block;
+    padding: 12px;
+
+    p {
+      font-size: 14px;
+      line-height: 14px;
+      margin-top: 10px;
+    }
+
+    > div {
+      margin-left: 0;
+    }
+  }
 `

@@ -10,13 +10,15 @@ type Props = {
 
 const ItemCardapio = ({ nomeItem, imagemItem, descricaoItem }: Props) => (
   <Item style={{ cursor: 'pointer' }}>
-    <div style={{ textAlign: 'center' }}>
-      <img src={imagemItem} alt={nomeItem} />
-    </div>
-    <h4>{nomeItem}</h4>
-    <p>{descricaoItem}</p>
-    <div style={{ textAlign: 'center' }}>
-      <button>Mais detalhes</button>
+    <div className="containerInfos">
+      <div style={{ textAlign: 'center' }}>
+        <img src={imagemItem} alt={nomeItem} />
+      </div>
+      <h4>{nomeItem}</h4>
+      <p>{descricaoItem}</p>
+      <div>
+        <button>Mais detalhes</button>
+      </div>
     </div>
   </Item>
 )

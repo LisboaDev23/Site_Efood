@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { dimensoes } from '../../styles'
 
 export const ContainerFooter = styled.footer`
   text-align: center;
@@ -9,6 +10,10 @@ export const ContainerFooter = styled.footer`
 export const ContainerLogoRedes = styled.div`
   display: block;
   margin-bottom: 80px;
+
+  @media (max-width: ${dimensoes.mobile}) {
+    margin-bottom: 40px;
+  }
 `
 
 export const LogoFooter = styled.img`

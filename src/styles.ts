@@ -7,6 +7,12 @@ export const cores = {
   rosaFundo: '#FFF8F2'
 }
 
+export const dimensoes = {
+  desktop: '1024px',
+  tablet: '768px',
+  mobile: '480px'
+}
+
 export const GlobalCss = createGlobalStyle`
   * {
     margin: 0;
@@ -24,4 +30,11 @@ export const GlobalCss = createGlobalStyle`
     width: 100%;
     margin: 0 auto;
   }
+
+  @media (max-width: ${dimensoes.mobile}) {
+    .container {
+      max-width: 86%;
+    }
+  }
+
 `

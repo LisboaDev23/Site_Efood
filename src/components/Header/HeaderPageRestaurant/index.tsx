@@ -12,7 +12,7 @@ const HeaderPageRestaurant = () => {
   return (
     <HeaderRestauranteBar style={{ backgroundImage: `url(${fundoHeader})` }}>
       <Container className="container">
-        <h3>Restaurante</h3>
+        <h3>Restaurante selecionado</h3>
         <img src={logo} alt="Efood" />
         <h3
           style={{ cursor: 'pointer' }}

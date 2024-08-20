@@ -2,6 +2,7 @@ import excluir from '../../assets/images/lixeira-de-reciclagem 1.png'
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/cart'
 import { cores } from '../../styles'
+import { formataPreco } from '../Cardapio'
 import { CartContainer, Overlay, Pedido, Sidebar } from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -47,7 +48,7 @@ const Cart = () => {
                   />
                   <div style={{ marginLeft: '8px' }}>
                     <h3 style={{ marginBottom: '16px' }}>{item.nome}</h3>
-                    <p>R$ {item.preco}0</p>
+                    <p>{formataPreco(item.preco)}</p>
                   </div>
                 </div>
                 <div
@@ -80,7 +81,7 @@ const Cart = () => {
             }}
           >
             <p>Valor total</p>
-            <p>R$ {calculaTotalCarrinho()}</p>
+            <p>{formataPreco(calculaTotalCarrinho())}</p>
           </div>
           <div>
             <button>Continuar com a entrega</button>

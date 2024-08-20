@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../../styles'
+import { cores, dimensoes } from '../../../styles'
 
 export const HeaderRestauranteBar = styled.header`
   background-color: ${cores.rosaClaro};
@@ -12,6 +12,13 @@ export const Container = styled.div`
   h3 {
     font-size: 18px;
     margin-top: 82px;
+    text-align: center;
+  }
+
+  @media (max-width: ${dimensoes.mobile}) {
+    h3 {
+      font-size: 10px;
+    }
   }
 
   img {
@@ -20,6 +27,5 @@ export const Container = styled.div`
     max-height: 57.5px;
     margin-top: 63px;
     margin-bottom: 65.5px;
-    margin-left: 96px;
   }
 `

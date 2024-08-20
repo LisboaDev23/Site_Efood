@@ -11,17 +11,25 @@ import { useState } from 'react'
 import { ItemCardapioRestaurante } from '../../pages/Home'
 import { useParams } from 'react-router-dom'
 import { useGetRestaurantByIdQuery } from '../../services/api'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
+import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
 
-type Props = {
-  itensCardapio: ItemCardapioRestaurante[]
+export const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
+export const getDescricao = (descricao: string) => {
+  if (descricao.length > 105) {
+    return descricao.slice(0, 105) + '...'
+  }
+  return descricao
 }
 
 const Cardapio = () => {
   const dispatch = useDispatch()
-  const { items, isOpen } = useSelector((state: RootReducer) => state.cart)
   const { id } = useParams()
   const [visivel, setVisivel] = useState(false)
   const [item, setItem] = useState<ItemCardapioRestaurante>()
@@ -43,7 +51,7 @@ const Cardapio = () => {
               <ItemCardapio
                 nomeItem={item.nome}
                 imagemItem={item.foto}
-                descricaoItem={item.descricao}
+                descricaoItem={getDescricao(item.descricao)}
                 porcaoItem={item.porcao}
                 precoItem={item.preco}
               />
@@ -72,7 +80,7 @@ const Cardapio = () => {
 
           <ContainerInfosItem>
             <img src={item?.foto} alt={item?.nome} />
-            <div style={{ maxWidth: '656px', marginLeft: '24px' }}>
+            <div>
               <h3>{item?.nome}</h3>
               <p>
                 {item?.descricao}
@@ -87,7 +95,7 @@ const Cardapio = () => {
                   setVisivel(false)
                 }}
               >
-                Adicionar ao carrinho - R$ {item?.preco}0
+                Adicionar ao carrinho - {formataPreco(item?.preco)}
               </button>
             </div>
           </ContainerInfosItem>

@@ -1,15 +1,24 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { cores, dimensoes } from '../../styles'
 
 export const Item = styled.li`
   background-color: ${cores.rosaForte};
-  max-width: 320px;
-  width: 100%;
+  max-width: 100%;
   margin-bottom: 32px;
 
-  img {
-    padding: 8px;
+  .containerInfos {
     max-width: 304px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: ${dimensoes.mobile}) {
+    .containerInfos {
+      width: 100%;
+    }
+  }
+
+  img {
+    padding-top: 8px;
     width: 100%;
     height: 167px;
   }
@@ -17,7 +26,6 @@ export const Item = styled.li`
     color: ${cores.rosaClaro};
     font-size: 16px;
     margin-bottom: 8px;
-    padding-left: 8px;
   }
   p {
     color: ${cores.rosaClaro};
@@ -25,11 +33,12 @@ export const Item = styled.li`
     font-size: 14px;
     line-height: 22px;
     margin-bottom: 8px;
-    padding: 0 8px;
   }
 
   button {
     margin-bottom: 8px;
+    max-width: 304px;
+    width: 100%;
     padding: 4px 84.76px 4px 83.24px;
     background-color: ${cores.rosaClaro};
     border: none;

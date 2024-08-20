@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { cores, dimensoes } from '../../styles'
 
 export const ContainerBanner = styled.div`
   color: ${cores.branco};
@@ -11,6 +11,11 @@ export const ContainerBanner = styled.div`
 
   h1 {
     font-size: 32px;
+  }
+  @media (max-width: ${dimensoes.mobile}) {
+    h1 {
+      font-size: 26px;
+    }
   }
 `
 export const Categoria = styled.h1`

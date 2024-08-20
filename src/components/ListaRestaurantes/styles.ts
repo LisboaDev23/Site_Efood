@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { cores, dimensoes } from '../../styles'
 
 export const Container = styled.section`
   background-color: ${cores.rosaFundo};
@@ -11,4 +11,8 @@ export const Lista = styled.ul`
   grid-template-columns: 1fr 1fr;
   column-gap: 80px;
   margin-top: 80px;
+
+  @media (max-width: ${dimensoes.mobile}) {
+    display: block;
+  }
 `

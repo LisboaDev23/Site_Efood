@@ -9,6 +9,7 @@ import {
   NomeNotaContainer
 } from './styles'
 import { cores } from '../../styles'
+import { getDescricao } from '../Cardapio'
 
 //necessito agora de uma representação do Objeto restaurante para preenchermos as informações
 //com as definições de instâncias
@@ -39,7 +40,8 @@ const Restaurante = ({
       style={{
         textDecoration: 'none',
         cursor: 'pointer',
-        color: `${cores.rosaForte}`
+        color: `${cores.rosaForte}`,
+        height: '100%'
       }}
       to={link}
     >
@@ -60,14 +62,10 @@ const Restaurante = ({
             <h4>{nome}</h4>
             <div style={{ display: 'flex' }}>
               <h4>{nota}</h4>
-              <img
-                src={estrela}
-                alt={'avaliação'}
-                style={{ marginLeft: '8px' }}
-              />
+              <img src={estrela} alt={'avaliação'} />
             </div>
           </NomeNotaContainer>
-          <Descricao>{descricao}</Descricao>
+          <Descricao>{getDescricao(descricao)}</Descricao>
           <BotaoSaibaMais>Saiba mais</BotaoSaibaMais>
         </div>
       </Card>
