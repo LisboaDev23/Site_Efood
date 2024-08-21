@@ -43,7 +43,7 @@ export const GlobalCss = createGlobalStyle`
     }
   }
 
-  @media (min-width: 769px) {
+  @media (min-width: 769px) and (max-width: ${dimensoes.desktop}) {
     .container {
       max-width: 93%;
     }

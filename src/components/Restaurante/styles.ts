@@ -27,7 +27,7 @@ export const NomeNotaContainer = styled.div`
     font-size: 18px;
   }
 
-  @media (min-width: 540px) and (max-width: 541px) {
+  @media (min-width: 482px) and (max-width: 683px) {
     h4 {
       font-size: 13px;
     }
