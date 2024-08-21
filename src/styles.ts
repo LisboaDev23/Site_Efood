@@ -37,4 +37,16 @@ export const GlobalCss = createGlobalStyle`
     }
   }
 
+  @media (max-width: ${dimensoes.tablet}) {
+    .container {
+      max-width: 86%;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .container {
+      max-width: 93%;
+    }
+  }
+
 `

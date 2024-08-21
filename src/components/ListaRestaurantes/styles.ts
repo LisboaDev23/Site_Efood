@@ -15,4 +15,8 @@ export const Lista = styled.ul`
   @media (max-width: ${dimensoes.mobile}) {
     display: block;
   }
+
+  @media (max-width: ${dimensoes.desktop}) {
+    column-gap: 30px;
+  }
 `

@@ -38,6 +38,10 @@ export const Sidebar = styled.aside`
     width: 100%;
   }
 
+  @media (min-width: 769px) {
+    max-width: 420px;
+  }
+
   button {
     background-color: ${cores.rosaClaro};
     width: 100%;

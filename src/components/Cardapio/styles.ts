@@ -11,6 +11,10 @@ export const ContainerCardapio = styled.ul`
   @media (max-width: ${dimensoes.mobile}) {
     display: block;
   }
+
+  @media (max-width: ${dimensoes.tablet}) {
+    grid-template-columns: 1fr 1fr;
+  }
 `
 
 export const Modal = styled.div`
@@ -59,6 +63,10 @@ export const ConteudoModal = styled.div`
     max-width: 310px;
     text-align: center;
     margin-top: 45px;
+  }
+
+  @media (max-width: ${dimensoes.tablet}) {
+    padding: 20px;
   }
 
   header {
