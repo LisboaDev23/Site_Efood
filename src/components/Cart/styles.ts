@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { cores, dimensoes } from '../../styles'
 
 export const CartContainer = styled.div`
   position: fixed;
@@ -33,6 +33,11 @@ export const Sidebar = styled.aside`
   width: 100%;
   z-index: 1;
 
+  @media (max-width: ${dimensoes.mobile}) {
+    max-width: 240px;
+    width: 100%;
+  }
+
   button {
     background-color: ${cores.rosaClaro};
     width: 100%;
@@ -50,4 +55,14 @@ export const Pedido = styled.li`
   background-color: ${cores.rosaClaro};
   padding: 8px 12px 4px 8px;
   margin-bottom: 16px;
+
+  h3 {
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: ${dimensoes.mobile}) {
+    h3 {
+      font-size: 14px;
+    }
+  }
 `

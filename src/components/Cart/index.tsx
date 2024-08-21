@@ -47,7 +47,7 @@ const Cart = () => {
                     alt={item.descricao}
                   />
                   <div style={{ marginLeft: '8px' }}>
-                    <h3 style={{ marginBottom: '16px' }}>{item.nome}</h3>
+                    <h3>{item.nome}</h3>
                     <p>{formataPreco(item.preco)}</p>
                   </div>
                 </div>
