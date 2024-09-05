@@ -149,246 +149,258 @@ const Checkout = () => {
     >
       <Overlay />
       <Sidebar>
-        <ContainerFormEntrega className={infosEntregaAberto ? 'visivel' : ''}>
-          <h3 style={{ color: `${cores.branco}` }}>Entrega</h3>
-          <FormularioInfos onSubmit={formulario.handleSubmit}>
-            <InputInfo>
-              <label htmlFor="remetente">Quem irá receber</label>
-              <input
-                type="text"
-                id="remetente"
-                value={formulario.values.remetente}
-                className={verificarErroCampo('remetente') ? 'error' : ''}
-                onChange={formulario.handleChange}
-                onBlur={formulario.handleBlur}
-              />
-              {verificarErroCampo('remetente') ? (
-                <span>Campo obrigatório!</span>
-              ) : (
-                ''
-              )}
-            </InputInfo>
-            <InputInfo>
-              <label htmlFor="endereco">Endereço</label>
-              <input
-                type="text"
-                id="endereco"
-                value={formulario.values.endereco}
-                className={verificarErroCampo('endereco') ? 'error' : ''}
-                onChange={formulario.handleChange}
-                onBlur={formulario.handleBlur}
-              />
-              {verificarErroCampo('endereco') ? (
-                <span>Campo obrigatório!</span>
-              ) : (
-                ''
-              )}
-            </InputInfo>
-            <InputInfo>
-              <label htmlFor="cidade">Cidade</label>
-              <input
-                type="text"
-                id="cidade"
-                value={formulario.values.cidade}
-                className={verificarErroCampo('cidade') ? 'error' : ''}
-                onChange={formulario.handleChange}
-                onBlur={formulario.handleBlur}
-              />
-              {verificarErroCampo('cidade') ? (
-                <span>Campo obrigatório!</span>
-              ) : (
-                ''
-              )}
-            </InputInfo>
-            <InputInfoTwoCamps>
-              <div>
-                <label htmlFor="cep">CEP</label>
-                <InputMask
-                  id="cep"
-                  className={verificarErroCampo('cep') ? 'error' : ''}
-                  value={formulario.values.cep}
-                  onChange={formulario.handleChange}
-                  onBlur={formulario.handleBlur}
-                  mask="99999-999"
-                />
-                {verificarErroCampo('cep') ? (
-                  <span>Campo obrigatório!</span>
-                ) : (
-                  ''
-                )}
-              </div>
-              <div>
-                <label htmlFor="numero">Número</label>
-                <input
-                  type="number"
-                  id="numero"
-                  value={formulario.values.numero}
-                  className={verificarErroCampo('numero') ? 'error' : ''}
-                  onChange={formulario.handleChange}
-                  onBlur={formulario.handleBlur}
-                />
-                {verificarErroCampo('numero') ? (
-                  <span>Campo obrigatório!</span>
-                ) : (
-                  ''
-                )}
-              </div>
-            </InputInfoTwoCamps>
-            <InputInfo>
-              <label htmlFor="complemento">Complemento(opcional)</label>
-              <input
-                type="text"
-                id="complemento"
-                value={formulario.values.complemento}
-                onChange={formulario.handleChange}
-                onBlur={formulario.handleBlur}
-              />
-            </InputInfo>
+        {isSuccess && data ? (
+          <ContainerPagConcluido>
+            <h3>Pedido realizado - {data.orderId}</h3>
+            <TextoPagConcluido>
+              Estamos felizes em informar que seu pedido já está em processo de
+              preparação e, em breve, será entregue no endereço fornecido.
+            </TextoPagConcluido>
+            <TextoPagConcluido>
+              Gostaríamos de ressaltar que nossos entregadores não estão
+              autorizados a realizar cobranças extras.{' '}
+            </TextoPagConcluido>
+            <TextoPagConcluido>
+              Lembre-se da importância de higienizar as mãos após o recebimento
+              do pedido, garantindo assim sua segurança e bem-estar durante a
+              refeição.
+            </TextoPagConcluido>
+            <TextoPagConcluido>
+              Esperamos que desfrute de uma deliciosa e agradável experiência
+              gastronômica. Bom apetite!
+            </TextoPagConcluido>
+            <button
+              type="button"
+              onClick={() => {
+                fecharPagConcluido()
+                limparCarrinho()
+              }}
+            >
+              Concluir
+            </button>
+          </ContainerPagConcluido>
+        ) : (
+          <>
+            <ContainerFormEntrega
+              className={infosEntregaAberto ? 'visivel' : ''}
+            >
+              <h3 style={{ color: `${cores.branco}` }}>Entrega</h3>
+              <FormularioInfos onSubmit={formulario.handleSubmit}>
+                <InputInfo>
+                  <label htmlFor="remetente">Quem irá receber</label>
+                  <input
+                    type="text"
+                    id="remetente"
+                    value={formulario.values.remetente}
+                    className={verificarErroCampo('remetente') ? 'error' : ''}
+                    onChange={formulario.handleChange}
+                    onBlur={formulario.handleBlur}
+                  />
+                  {verificarErroCampo('remetente') ? (
+                    <span>Campo obrigatório!</span>
+                  ) : (
+                    ''
+                  )}
+                </InputInfo>
+                <InputInfo>
+                  <label htmlFor="endereco">Endereço</label>
+                  <input
+                    type="text"
+                    id="endereco"
+                    value={formulario.values.endereco}
+                    className={verificarErroCampo('endereco') ? 'error' : ''}
+                    onChange={formulario.handleChange}
+                    onBlur={formulario.handleBlur}
+                  />
+                  {verificarErroCampo('endereco') ? (
+                    <span>Campo obrigatório!</span>
+                  ) : (
+                    ''
+                  )}
+                </InputInfo>
+                <InputInfo>
+                  <label htmlFor="cidade">Cidade</label>
+                  <input
+                    type="text"
+                    id="cidade"
+                    value={formulario.values.cidade}
+                    className={verificarErroCampo('cidade') ? 'error' : ''}
+                    onChange={formulario.handleChange}
+                    onBlur={formulario.handleBlur}
+                  />
+                  {verificarErroCampo('cidade') ? (
+                    <span>Campo obrigatório!</span>
+                  ) : (
+                    ''
+                  )}
+                </InputInfo>
+                <InputInfoTwoCamps>
+                  <div>
+                    <label htmlFor="cep">CEP</label>
+                    <InputMask
+                      id="cep"
+                      className={verificarErroCampo('cep') ? 'error' : ''}
+                      value={formulario.values.cep}
+                      onChange={formulario.handleChange}
+                      onBlur={formulario.handleBlur}
+                      mask="99999-999"
+                    />
+                    {verificarErroCampo('cep') ? (
+                      <span>Campo obrigatório!</span>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                  <div>
+                    <label htmlFor="numero">Número</label>
+                    <input
+                      type="number"
+                      id="numero"
+                      value={formulario.values.numero}
+                      className={verificarErroCampo('numero') ? 'error' : ''}
+                      onChange={formulario.handleChange}
+                      onBlur={formulario.handleBlur}
+                    />
+                    {verificarErroCampo('numero') ? (
+                      <span>Campo obrigatório!</span>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </InputInfoTwoCamps>
+                <InputInfo>
+                  <label htmlFor="complemento">Complemento(opcional)</label>
+                  <input
+                    type="text"
+                    id="complemento"
+                    value={formulario.values.complemento}
+                    onChange={formulario.handleChange}
+                    onBlur={formulario.handleBlur}
+                  />
+                </InputInfo>
 
-            <div style={{ marginTop: '8px' }}>
-              <button type="button" onClick={abrirInfosPagamento}>
-                Continuar com o pagamento
-              </button>
-              <button type="button" onClick={voltarCarrinho}>
-                Voltar para o carrinho
-              </button>
-            </div>
-          </FormularioInfos>
-        </ContainerFormEntrega>
+                <div style={{ marginTop: '8px' }}>
+                  <button type="button" onClick={abrirInfosPagamento}>
+                    Continuar com o pagamento
+                  </button>
+                  <button type="button" onClick={voltarCarrinho}>
+                    Voltar para o carrinho
+                  </button>
+                </div>
+              </FormularioInfos>
+            </ContainerFormEntrega>
 
-        <ContainerFormPagamento
-          className={infosPagamentoAberto ? 'visivel' : ''}
-        >
-          <h3>
-            Pagamento - Valor a pagar{' '}
-            {formataPreco(calculaTotalCarrinho(items))}
-          </h3>
-          <FormularioInfos>
-            <InputInfo>
-              <label htmlFor="nomeTitular">Nome no cartão</label>
-              <input
-                type="text"
-                id="nomeTitular"
-                value={formulario.values.nomeTitular}
-                className={verificarErroCampo('nomeTitular') ? 'error' : ''}
-                onChange={formulario.handleChange}
-                onBlur={formulario.handleBlur}
-              />
-              {verificarErroCampo('nomeTitular') ? (
-                <span>Campo obrigatório!</span>
-              ) : (
-                ''
-              )}
-            </InputInfo>
-            <InputInfoTwoCamps>
-              <div style={{ maxWidth: '228px', width: '100%' }}>
-                <label htmlFor="numeroCartao">Número do cartão</label>
-                <InputMask
-                  style={{ width: '100%' }}
-                  id="numeroCartao"
-                  value={formulario.values.numeroCartao}
-                  className={verificarErroCampo('numeroCartao') ? 'error' : ''}
-                  onChange={formulario.handleChange}
-                  onBlur={formulario.handleBlur}
-                  mask="9999 9999 9999 9999"
-                />
-                {verificarErroCampo('numeroCartao') ? (
-                  <span>Campo obrigatório!</span>
-                ) : (
-                  ''
-                )}
-              </div>
-              <div>
-                <label htmlFor="codigoCvv">CVV</label>
-                <InputMask
-                  id="codigoCvv"
-                  value={formulario.values.codigoCvv}
-                  className={verificarErroCampo('codigoCvv') ? 'error' : ''}
-                  onChange={formulario.handleChange}
-                  onBlur={formulario.handleBlur}
-                  mask="999"
-                />
-                {verificarErroCampo('codigoCvv') ? (
-                  <span>Campo obrigatório!</span>
-                ) : (
-                  ''
-                )}
-              </div>
-            </InputInfoTwoCamps>
-            <InputInfoTwoCamps>
-              <div>
-                <label htmlFor="mesVencimento">Mês do vencimento</label>
-                <InputMask
-                  id="mesVencimento"
-                  value={formulario.values.mesVencimento}
-                  className={verificarErroCampo('mesVencimento') ? 'error' : ''}
-                  onChange={formulario.handleChange}
-                  onBlur={formulario.handleBlur}
-                  mask="99"
-                />
-                {verificarErroCampo('mesVencimento') ? (
-                  <span>Campo obrigatório!</span>
-                ) : (
-                  ''
-                )}
-              </div>
-              <div>
-                <label htmlFor="anoVencimento">Ano do vencimento</label>
-                <InputMask
-                  id="anoVencimento"
-                  value={formulario.values.anoVencimento}
-                  className={verificarErroCampo('anoVencimento') ? 'error' : ''}
-                  onChange={formulario.handleChange}
-                  onBlur={formulario.handleBlur}
-                  mask="9999"
-                />
-                {verificarErroCampo('anoVencimento') ? (
-                  <span>Campo obrigatório!</span>
-                ) : (
-                  ''
-                )}
-              </div>
-            </InputInfoTwoCamps>
-            <div>
-              <button type="button" onClick={abrirPagConcluido}>
-                Finalizar pagamento
-              </button>
-              <button type="button" onClick={fecharInfosPagamento}>
-                Voltar para edição do endereço
-              </button>
-            </div>
-          </FormularioInfos>
-        </ContainerFormPagamento>
-
-        <ContainerPagConcluido className={pagamentoConcluido ? 'visivel' : ''}>
-          <h3>Pedido realizado - {'ORDER_ID'}</h3>
-          <TextoPagConcluido>
-            Estamos felizes em informar que seu pedido já está em processo de
-            preparação e, em breve, será entregue no endereço fornecido.
-          </TextoPagConcluido>
-          <TextoPagConcluido>
-            Gostaríamos de ressaltar que nossos entregadores não estão
-            autorizados a realizar cobranças extras.{' '}
-          </TextoPagConcluido>
-          <TextoPagConcluido>
-            Lembre-se da importância de higienizar as mãos após o recebimento do
-            pedido, garantindo assim sua segurança e bem-estar durante a
-            refeição.
-          </TextoPagConcluido>
-          <TextoPagConcluido>
-            Esperamos que desfrute de uma deliciosa e agradável experiência
-            gastronômica. Bom apetite!
-          </TextoPagConcluido>
-          <button
-            type="button"
-            onClick={() => {
-              fecharPagConcluido()
-              limparCarrinho()
-            }}
-          >
-            Concluir
-          </button>
-        </ContainerPagConcluido>
+            <ContainerFormPagamento
+              className={infosPagamentoAberto ? 'visivel' : ''}
+            >
+              <h3>
+                Pagamento - Valor a pagar{' '}
+                {formataPreco(calculaTotalCarrinho(items))}
+              </h3>
+              <FormularioInfos>
+                <InputInfo>
+                  <label htmlFor="nomeTitular">Nome no cartão</label>
+                  <input
+                    type="text"
+                    id="nomeTitular"
+                    value={formulario.values.nomeTitular}
+                    className={verificarErroCampo('nomeTitular') ? 'error' : ''}
+                    onChange={formulario.handleChange}
+                    onBlur={formulario.handleBlur}
+                  />
+                  {verificarErroCampo('nomeTitular') ? (
+                    <span>Campo obrigatório!</span>
+                  ) : (
+                    ''
+                  )}
+                </InputInfo>
+                <InputInfoTwoCamps>
+                  <div style={{ maxWidth: '228px', width: '100%' }}>
+                    <label htmlFor="numeroCartao">Número do cartão</label>
+                    <InputMask
+                      style={{ width: '100%' }}
+                      id="numeroCartao"
+                      value={formulario.values.numeroCartao}
+                      className={
+                        verificarErroCampo('numeroCartao') ? 'error' : ''
+                      }
+                      onChange={formulario.handleChange}
+                      onBlur={formulario.handleBlur}
+                      mask="9999 9999 9999 9999"
+                    />
+                    {verificarErroCampo('numeroCartao') ? (
+                      <span>Campo obrigatório!</span>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                  <div>
+                    <label htmlFor="codigoCvv">CVV</label>
+                    <InputMask
+                      id="codigoCvv"
+                      value={formulario.values.codigoCvv}
+                      className={verificarErroCampo('codigoCvv') ? 'error' : ''}
+                      onChange={formulario.handleChange}
+                      onBlur={formulario.handleBlur}
+                      mask="999"
+                    />
+                    {verificarErroCampo('codigoCvv') ? (
+                      <span>Campo obrigatório!</span>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </InputInfoTwoCamps>
+                <InputInfoTwoCamps>
+                  <div>
+                    <label htmlFor="mesVencimento">Mês do vencimento</label>
+                    <InputMask
+                      id="mesVencimento"
+                      value={formulario.values.mesVencimento}
+                      className={
+                        verificarErroCampo('mesVencimento') ? 'error' : ''
+                      }
+                      onChange={formulario.handleChange}
+                      onBlur={formulario.handleBlur}
+                      mask="99"
+                    />
+                    {verificarErroCampo('mesVencimento') ? (
+                      <span>Campo obrigatório!</span>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                  <div>
+                    <label htmlFor="anoVencimento">Ano do vencimento</label>
+                    <InputMask
+                      id="anoVencimento"
+                      value={formulario.values.anoVencimento}
+                      className={
+                        verificarErroCampo('anoVencimento') ? 'error' : ''
+                      }
+                      onChange={formulario.handleChange}
+                      onBlur={formulario.handleBlur}
+                      mask="9999"
+                    />
+                    {verificarErroCampo('anoVencimento') ? (
+                      <span>Campo obrigatório!</span>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </InputInfoTwoCamps>
+                <div>
+                  <button type="button" onClick={abrirPagConcluido}>
+                    Finalizar pagamento
+                  </button>
+                  <button type="button" onClick={fecharInfosPagamento}>
+                    Voltar para edição do endereço
+                  </button>
+                </div>
+              </FormularioInfos>
+            </ContainerFormPagamento>
+          </>
+        )}
       </Sidebar>
     </CheckoutContainer>
   )
