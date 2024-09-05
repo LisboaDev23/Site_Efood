@@ -5,6 +5,16 @@ import { cores } from '../../styles'
 import { formataPreco } from '../Cardapio'
 import { CartContainer, Overlay, Pedido, Sidebar } from './styles'
 import { useDispatch, useSelector } from 'react-redux'
+import { openInfosEntrega } from '../../store/reducers/checkout'
+import { ItemCardapioRestaurante } from '../../pages/Home'
+
+export const calculaTotalCarrinho = (carrinho: ItemCardapioRestaurante[]) => {
+  let acumulador = 0
+  carrinho.forEach((item) => {
+    acumulador += item.preco
+  })
+  return acumulador
+}
 
 const Cart = () => {
   const { items, isOpen } = useSelector((state: RootReducer) => state.cart)
@@ -13,16 +23,11 @@ const Cart = () => {
   const closeCart = () => {
     dispatch(close())
   }
+  const abrirInformacoesEntrega = () => {
+    dispatch(openInfosEntrega())
+  }
 
   const removeItem = (id: number) => dispatch(remove(id))
-
-  const calculaTotalCarrinho = () => {
-    let acumulador = 0
-    items.forEach((item) => {
-      acumulador += item.preco
-    })
-    return acumulador
-  }
 
   return (
     <CartContainer className={isOpen ? 'is-open' : ''}>
@@ -81,10 +86,29 @@ const Cart = () => {
             }}
           >
             <p>Valor total</p>
-            <p>{formataPreco(calculaTotalCarrinho())}</p>
+            <p>{formataPreco(calculaTotalCarrinho(items))}</p>
           </div>
           <div>
-            <button>Continuar com a entrega</button>
+            {items.length > 0 ? (
+              <button
+                onClick={() => {
+                  abrirInformacoesEntrega()
+                  closeCart()
+                }}
+              >
+                Continuar com a entrega
+              </button>
+            ) : (
+              <h4
+                style={{
+                  color: cores.branco,
+                  marginTop: '24px',
+                  textAlign: 'center'
+                }}
+              >
+                Adicione pelo menos um item no carrinho para prosseguir
+              </h4>
+            )}
           </div>
         </div>
       </Sidebar>

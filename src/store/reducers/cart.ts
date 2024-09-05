@@ -24,6 +24,9 @@ const cartSlice = createSlice({
         alert('Pedido já adicionado no carrinho!')
       }
     },
+    clean: (state) => {
+      state.items = []
+    },
     remove: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id !== action.payload)
     },
@@ -36,5 +39,5 @@ const cartSlice = createSlice({
   }
 })
 
-export const { add, remove, open, close } = cartSlice.actions
+export const { add, remove, open, close, clean } = cartSlice.actions
 export default cartSlice.reducer
