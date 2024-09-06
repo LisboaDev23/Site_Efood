@@ -39,17 +39,14 @@ export const ContainerPagConcluido = styled.div`
   > buttom {
     margin-top: 8px;
   }
-  display: none;
+  display: block;
   color: ${cores.branco};
-
-  &.visivel {
-    display: block;
-  }
 `
 
 export const TextoPagConcluido = styled.p`
   font-size: 14px;
   line-height: 22px;
+  font-weight: 400;
 `
 
 export const InputInfo = styled.div`

@@ -51,8 +51,8 @@ const Checkout = () => {
   }
 
   const abrirPagConcluido = () => {
-    dispatch(openPagConcluido())
     dispatch(closeInfosPagamento())
+    dispatch(openPagConcluido())
   }
 
   const fecharPagConcluido = () => {
@@ -149,22 +149,25 @@ const Checkout = () => {
     >
       <Overlay />
       <Sidebar>
-        {isSuccess && data ? (
+        {isSuccess && data && pagamentoConcluido ? (
           <ContainerPagConcluido>
             <h3>Pedido realizado - {data.orderId}</h3>
             <TextoPagConcluido>
               Estamos felizes em informar que seu pedido já está em processo de
               preparação e, em breve, será entregue no endereço fornecido.
             </TextoPagConcluido>
+            <br />
             <TextoPagConcluido>
               Gostaríamos de ressaltar que nossos entregadores não estão
               autorizados a realizar cobranças extras.{' '}
             </TextoPagConcluido>
+            <br />
             <TextoPagConcluido>
               Lembre-se da importância de higienizar as mãos após o recebimento
               do pedido, garantindo assim sua segurança e bem-estar durante a
               refeição.
             </TextoPagConcluido>
+            <br />
             <TextoPagConcluido>
               Esperamos que desfrute de uma deliciosa e agradável experiência
               gastronômica. Bom apetite!
@@ -280,7 +283,18 @@ const Checkout = () => {
                 </InputInfo>
 
                 <div style={{ marginTop: '8px' }}>
-                  <button type="button" onClick={abrirInfosPagamento}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (formulario.isValid && formulario.dirty) {
+                        abrirInfosPagamento()
+                      } else {
+                        alert(
+                          'Preencha os dados de entrega corretamente por favor!'
+                        )
+                      }
+                    }}
+                  >
                     Continuar com o pagamento
                   </button>
                   <button type="button" onClick={voltarCarrinho}>
@@ -297,7 +311,7 @@ const Checkout = () => {
                 Pagamento - Valor a pagar{' '}
                 {formataPreco(calculaTotalCarrinho(items))}
               </h3>
-              <FormularioInfos>
+              <FormularioInfos onSubmit={formulario.handleSubmit}>
                 <InputInfo>
                   <label htmlFor="nomeTitular">Nome no cartão</label>
                   <input
@@ -390,8 +404,23 @@ const Checkout = () => {
                   </div>
                 </InputInfoTwoCamps>
                 <div>
-                  <button type="button" onClick={abrirPagConcluido}>
-                    Finalizar pagamento
+                  <button
+                    type="submit"
+                    title="Clique aqui para finalizar o pagamento"
+                    onClick={() => {
+                      if (formulario.isValid && formulario.dirty) {
+                        formulario.handleSubmit()
+                        abrirPagConcluido()
+                      } else {
+                        alert(
+                          'Preencha os dados de pagamento corretamente por favor!'
+                        )
+                      }
+                    }}
+                  >
+                    {isLoading
+                      ? 'Finalizando compra ...'
+                      : 'Finalizar o pagamento'}
                   </button>
                   <button type="button" onClick={fecharInfosPagamento}>
                     Voltar para edição do endereço
