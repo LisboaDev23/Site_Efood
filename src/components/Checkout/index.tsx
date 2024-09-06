@@ -27,6 +27,8 @@ import { formataPreco } from '../Cardapio'
 import { calculaTotalCarrinho } from '../Cart'
 import { useFormik } from 'formik'
 import { usePurchaseMutation } from '../../services/api'
+import { useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 
 const Checkout = () => {
   const dispatch = useDispatch()
@@ -139,6 +141,12 @@ const Checkout = () => {
     }
   })
 
+  useEffect(() => {
+    if (isSuccess) {
+      limparCarrinho()
+    }
+  }, [isSuccess])
+
   return (
     <CheckoutContainer
       className={
@@ -176,7 +184,6 @@ const Checkout = () => {
               type="button"
               onClick={() => {
                 fecharPagConcluido()
-                limparCarrinho()
               }}
             >
               Concluir
