@@ -329,7 +329,7 @@ const Checkout = () => {
                     ''
                   )}
                 </InputInfo>
-                <InputInfoTwoCamps>
+                <InputInfoTwoCamps className="cvv">
                   <div style={{ maxWidth: '228px', width: '100%' }}>
                     <label htmlFor="numeroCartao">Número do cartão</label>
                     <InputMask
@@ -349,6 +349,7 @@ const Checkout = () => {
                       ''
                     )}
                   </div>
+
                   <div>
                     <label htmlFor="codigoCvv">CVV</label>
                     <InputMask

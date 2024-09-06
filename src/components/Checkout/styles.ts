@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { cores, dimensoes } from '../../styles'
 
 export const CheckoutContainer = styled.div`
   position: fixed;
@@ -71,10 +71,18 @@ export const InputInfo = styled.div`
 `
 
 export const InputInfoTwoCamps = styled.div`
+  &.cvv {
+    @media (max-width: ${dimensoes.mobile}) {
+      display: block;
+    }
+  }
   display: flex;
   justify-content: space-between;
   div {
     max-width: 155px;
+    @media (max-width: ${dimensoes.mobile}) {
+      max-width: 100px;
+    }
   }
   label {
     margin-bottom: 8px;
