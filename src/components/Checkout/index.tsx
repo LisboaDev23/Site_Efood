@@ -286,12 +286,10 @@ const Checkout = () => {
                   <button
                     type="button"
                     onClick={() => {
-                      if (formulario.isValid && formulario.dirty) {
-                        abrirInfosPagamento()
-                      } else {
-                        alert(
-                          'Preencha os dados de entrega corretamente por favor!'
-                        )
+                      if (!formulario.isValid) {
+                        if (formulario.dirty) {
+                          abrirInfosPagamento()
+                        }
                       }
                     }}
                   >
