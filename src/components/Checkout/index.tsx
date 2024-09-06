@@ -286,11 +286,7 @@ const Checkout = () => {
                   <button
                     type="button"
                     onClick={() => {
-                      if (!formulario.isValid) {
-                        if (formulario.dirty) {
-                          abrirInfosPagamento()
-                        }
-                      }
+                      abrirInfosPagamento()
                     }}
                   >
                     Continuar com o pagamento
@@ -411,7 +407,7 @@ const Checkout = () => {
                         abrirPagConcluido()
                       } else {
                         alert(
-                          'Preencha os dados de pagamento corretamente por favor!'
+                          'Verifique se os dados de entrega e pagamento estão preenchidos corretamente!'
                         )
                       }
                     }}
