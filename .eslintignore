@@ -1,0 +1,3 @@
+src/components/Cardapio/index.tsx
+src/pages/RestaurantePage/index.tsx
+src/components/Checkout/index.tsx
