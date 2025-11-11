@@ -28,7 +28,6 @@ import { calculaTotalCarrinho } from '../Cart'
 import { useFormik } from 'formik'
 import { usePurchaseMutation } from '../../services/api'
 import { useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
 
 const Checkout = () => {
   const dispatch = useDispatch()
@@ -140,7 +139,6 @@ const Checkout = () => {
       })
     }
   })
-
   useEffect(() => {
     if (isSuccess) {
       limparCarrinho()

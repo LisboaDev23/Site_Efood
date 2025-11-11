@@ -6,7 +6,7 @@ import { useGetRestaurantByIdQuery } from '../../services/api'
 
 const RestaurantePage = () => {
   const { id } = useParams()
-  const { data: restaurante } = useGetRestaurantByIdQuery(id!)
+  const { data: restaurante } = useGetRestaurantByIdQuery(id! ?? '')
 
   if (!restaurante) {
     return <h4>Carregando ...</h4>
